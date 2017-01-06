@@ -366,12 +366,13 @@ QueueWorker.prototype._updateProgress = function(taskNumber) {
    * @returns {RSVP.Promise} Whether the progress was updated.
    */
   var updateProgress = function(progress) {
+    /* Allows non numeric progress
     if (!_.isNumber(progress) ||
         _.isNaN(progress) ||
         progress < 0 ||
         progress > 100) {
       return RSVP.reject(new Error('Invalid progress'));
-    }
+    } /**/
     if ((taskNumber !== self.taskNumber)  || _.isNull(self.currentTaskRef)) {
       errorMsg = 'Can\'t update progress - no task currently being processed';
       logger.debug(self._getLogEntry(errorMsg));
